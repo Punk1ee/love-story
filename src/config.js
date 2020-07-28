@@ -1,35 +1,6 @@
 const stages = [
   {
     content: [
-      { 
-        name: 'Icons',
-        source: '/static/imgs/love.svg',
-        number: 1,
-        style: {
-          width: '128px',
-          height: '128px',
-          // 如果位置随机，则left和top必须是两个值的数组；否则位置默认固定，固定时值为'center'的话则居中
-          position: {
-            random: false,
-            left: 'center',
-            top: 'center'
-          },
-          background: {
-            size: '128px'
-          },
-          animation: {
-            name: '_scale',
-            duration: '3s',
-            delay: '0s',
-            iterationCount: 'infinite'
-          }
-        }
-      }
-    ],
-    style: { background: '#fff' }
-  },
-  {
-    content: [
       { name: 'Words', source: 'Forever Love', rate: 500 },
       { name: 'FlowStar' },
       { 
@@ -47,13 +18,14 @@ const stages = [
           },
           background: {
             size: '40px'
-          }
+          },
+          opacity: 0.8
         }
       },
       { 
         name: 'Icons',
         source: '/static/imgs/shine-star.svg',
-        number: [12, 16],
+        number: [8, 10],
         style: {
           width: '14px',
           height: '14px',
@@ -61,7 +33,7 @@ const stages = [
           position: {
             random: true,
             left: ['5%', '95%'],
-            top: ['5%', '30%']
+            top: ['5%', '20%']
           },
           background: {
             size: '14px'
@@ -74,11 +46,12 @@ const stages = [
               val: '0s'
             },
             iterationCount: 'infinite'
-          }
+          },
+          opacity: 0.4
         }
       }
     ],
-    style: { background: 'linear-gradient(to bottom, #010A10 30%, #59230B 80%, #2F1107 100%)' }
+    style: { background: 'linear-gradient(to bottom, #010A10 20%, #59230B 50%, #2F1107 100%)' }
   },
   {
     content: [
@@ -96,6 +69,62 @@ const stages = [
           in_right: 'https://punklee.oss-cn-beijing.aliyuncs.com/10.jpg',
           in_top: 'https://punklee.oss-cn-beijing.aliyuncs.com/11.jpg',
           in_bottom: 'https://punklee.oss-cn-beijing.aliyuncs.com/12.jpg'
+        }
+      },
+      { 
+        name: 'Icons',
+        source: '/static/imgs/love.svg',
+        number: 6,
+        style: {
+          width: '16px',
+          height: '16px',
+          // 如果位置随机，则left和top必须是两个值的数组；否则位置默认固定，固定时值为'center'的话则居中
+          position: {
+            random: true,
+            left: ['10%', '90%'],
+            top: ['100%', '100%']
+          },
+          background: {
+            size: '16px'
+          },
+          animation: {
+            name: '_rise',
+            duration: '8s',
+            delay: {
+              rate: 0.2,
+              val: '0s'
+            },
+            iterationCount: 'infinite'
+          },
+          opacity: 0.5
+        }
+      },
+      { 
+        name: 'Icons',
+        source: '/static/imgs/love.svg',
+        number: 6,
+        style: {
+          width: '16px',
+          height: '16px',
+          // 如果位置随机，则left和top必须是两个值的数组；否则位置默认固定，固定时值为'center'的话则居中
+          position: {
+            random: true,
+            left: ['10%', '90%'],
+            top: ['80%', '90%']
+          },
+          background: {
+            size: '16px'
+          },
+          animation: {
+            name: '_rise',
+            duration: '8s',
+            delay: {
+              rate: 0.2,
+              val: '0s'
+            },
+            iterationCount: 'infinite'
+          },
+          opacity: 0.5
         }
       }
     ],

@@ -46,7 +46,7 @@ export default {
           delay: '0s',
           iterationCount: 1
         },
-        transform: null
+        opacity: 1
       }
     }
   },
@@ -137,6 +137,7 @@ export default {
             marginTop: position.marginTop,
             backgroundImage: this.style.backgroundImage,
             backgroundSize: style.background.size || this.style.backgroundSize,
+            opacity: style.opacity || this.style.opacity,
             animationName: name,
             animationDuration: duration,
             animationDelay: parseInt(delay.val, 10) + i * delay.rate + 's',
@@ -172,6 +173,14 @@ export default {
 			opacity: 0.4;
 		}
 	}
+  @keyframes _rise {
+		0% {
+			transform: translateY(0px) scale(0.2);
+		}
+		100% {
+			transform: translateY(-500px) scale(1);
+		}
+	}
   .icon-container {
     position: absolute;
     width: 100%;
@@ -184,7 +193,10 @@ export default {
     animation-name: _scale !important;
   }
   ._opacity {
-    opacity: 0.4;
     animation-name: _opacity !important;
+  }
+  ._rise {
+    transform: translateY(0px) scale(0.2);
+    animation-name: _rise !important;
   }
 </style>

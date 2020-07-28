@@ -68,6 +68,7 @@ export default {
   width: 200px;
   height: 200px;
   margin: auto;
+  z-index: 9999;
   /*改变左右上下,图片方块移动*/
 }
 /*包裹所有容器样式*/

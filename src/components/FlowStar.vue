@@ -17,7 +17,11 @@ export default {
   data() {
     return {
       win_w: 0,
-      stars: []
+      stars: [],
+      animationDelay: {
+        val: 0,
+        rate: 0.2
+      }
     }
   },
   created() {
@@ -29,14 +33,13 @@ export default {
       this.win_w = getWinWidth()
     },
     createStars() {
-      const animationDelayRate = 0.2
-      const count = getBetweenRandom(10, 15)
+      const count = getBetweenRandom(4, 6)
       for (let i = 0; i < count; i++) {
         const left = getBetweenRandom(0, this.win_w)
         this.stars.push({
           left: left + 'px',
           top: '0px',
-          animationDelay: i % 6 == 0 ? '0s' : i * animationDelayRate + 's'
+          animationDelay: i % 6 == 0 ? this.animationDelay.val + 's' : i * (this.animationDelay.val + this.animationDelay.rate) + 's'
         })
       }
     }
