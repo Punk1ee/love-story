@@ -55,11 +55,12 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .single-word-display-container {
     font-size: 20px;
     position: absolute;
     width: 100%;
     height: 100%;
+    text-align: center;
   }
 </style>

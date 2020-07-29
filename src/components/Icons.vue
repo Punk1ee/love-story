@@ -40,12 +40,6 @@ export default {
         },
         backgroundImage: `url(${this.cptInfos.source})`,
         backgroundSize: '16px',
-        animation: {
-          name: null,
-          duration: '3s',
-          delay: '0s',
-          iterationCount: 1
-        },
         opacity: 1
       }
     }
@@ -68,18 +62,39 @@ export default {
         const { width, height } = this.cptInfos.style || this.style
         if (position.left === 'center') {
           _position.left = '50%'
-          _position.marginLeft = `-${parseInt(width, 10) / 2}px`
-        } else {
+          _position.marginLeft = -(this.unit2px(width, 'width') / 2).toFixed(2) + 'px'
+        } else if (position.left) {
           _position.left = position.left
+        }
+        if (position.right === 'center') {
+          _position.right = '50%'
+          _position.marginRight = -(this.unit2px(width, 'width') / 2).toFixed(2) + 'px'
+        } else if (position.right) {
+          _position.right = position.right
+        }
+        if (position.bottom === 'center') {
+          _position.bottom = '50%'
+          _position.marginBottom = -(this.unit2px(height, 'height') / 2).toFixed(2) + 'px'
+        } else {
+          _position.bottom = position.bottom
         }
         if (position.top === 'center') {
           _position.top = '50%'
-          _position.marginTop = `-${parseInt(height, 10) / 2}px`
+          _position.marginTop = -(this.unit2px(height, 'height') / 2).toFixed(2) + 'px'
         } else {
           _position.top = position.top
         }
       }
       return _position
+    },
+    unit2px(val, type) {
+      const full_px = type === 'width' ? this.win_w : type === 'height' ? this.win_h : val
+      if (val.includes('%')) {
+        val = full_px * parseInt(val) / 100
+      } else {
+        val = parseInt(val)
+      }
+      return val
     },
     getRandomPosition(position) {
       const leftRange = position && position.left
@@ -124,25 +139,35 @@ export default {
       }
       for (let i = 0; i < number; i++) {
         const style = this.cptInfos.style
-        const { name, duration, delay, iterationCount } = style.animation || this.style.animation
         const position = this.getPosition()
-        this.cpts.push({
-          idx: i,
-          style: {
-            width: style.width || this.style.width,
-            height: style.height || this.style.height,
-            left: position.left,
-            top: position.top,
-            marginLeft: position.marginLeft,
-            marginTop: position.marginTop,
-            backgroundImage: this.style.backgroundImage,
-            backgroundSize: style.background.size || this.style.backgroundSize,
-            opacity: style.opacity || this.style.opacity,
+        let _style = {
+          width: style.width || this.style.width,
+          height: style.height || this.style.height,
+          left: position.left,
+          top: position.top,
+          right: position.right,
+          bottom: position.bottom,
+          marginLeft: position.marginLeft,
+          marginTop: position.marginTop,
+          backgroundImage: this.style.backgroundImage,
+          backgroundSize: style.background.size || this.style.backgroundSize,
+          opacity: style.opacity || this.style.opacity
+        }
+        let animation_style = {}
+        if (style.animation) {
+          const { name, duration, delay, iterationCount } = style.animation
+          animation_style = {
             animationName: name,
             animationDuration: duration,
             animationDelay: parseInt(delay.val, 10) + i * delay.rate + 's',
             animationIterationCount: iterationCount
           }
+        }
+        _style = { ..._style, ...animation_style }
+
+        this.cpts.push({
+          idx: i,
+          style: _style
         })
       }
     }

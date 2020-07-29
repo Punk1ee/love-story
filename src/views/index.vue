@@ -22,7 +22,7 @@
 </template>
 <script>
 import { Swiper, SwiperSlide } from "vue-awesome-swiper"
-import stages from '@/config'
+import stages from '@/utils/config'
 
 export default {
   name: "index",
