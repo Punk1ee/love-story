@@ -1,6 +1,6 @@
 <template>
   <div id="app" @touchstart.stop="playMusic">
-    <router-view/>
+    <router-view />
     <player ref="player" :source="playerSrc" />
   </div>
 </template>

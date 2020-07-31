@@ -44,8 +44,7 @@ export default {
       }
       this.$store.dispatch('Login', userInfo).then(res => {
         this.loading = false
-        this.$router.push({ path: './' })
-        this.$toast.success('登陆成功')
+        this.$router.push({ path: '/home/index' })
       }).catch(() => {
         this.loading = false
         this.$toast.fail('账号或密码错误')

@@ -27,7 +27,7 @@ export function setToken(token) {
   return Cookie.set(tokenKey, token)
 }
 
-export function getUserInfo(token) {
+export function getUserInfo() {
   return {
     username: 'weihaoyue',
     password: '20170827'

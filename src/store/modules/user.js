@@ -1,13 +1,19 @@
 import { getToken, setToken, getUserInfo } from '@/utils'
+import { login } from '@/api/login'
+import Cookie from 'js-cookie'
 
 const user = {
   state: {
-    username: '',
+    username: '' || Cookie.get('username'),
     password: '',
     token: getToken()
   },
 
   mutations: {
+    SET_USER: (state, { username }) => {
+      state.username = username
+      Cookie.set('username', username)
+    },
     SET_TOKEN: (state, token) => {
       state.token = token
     }
@@ -15,16 +21,17 @@ const user = {
 
   actions: {
     Login({ commit }, userInfo) {
-      const user_info = getUserInfo()
       const { username, password } = userInfo
-      const canLogin = userInfo && username === user_info.username && password === user_info.password 
       return new Promise((resolve, reject) => {
-        if (canLogin) {
-          setToken(username)
+        login({ username: username.trim(), password: password }).then(response => {
+          const { data } = response
+          commit('SET_TOKEN', data.token)
+          commit('SET_USER', userInfo)
+          setToken(data.token)
           resolve()
-        } else {
-          reject()
-        }
+        }).catch(error => {
+          reject(error)
+        })
       })
       
     }
