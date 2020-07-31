@@ -58,14 +58,24 @@ exports.cssLoaders = function (options) {
   return {
     css: generateLoaders(),
     postcss: generateLoaders(),
-    less: generateLoaders('less'),
-    sass: generateLoaders('sass', { indentedSyntax: true }),
-    scss: generateLoaders('sass').concat({
+    // less-loader版本需要稳定在5.0.0，太高了会报错
+    // modifyVars: 替换组件内部的变量
+    // sass-resources-loader：less变量全局引用
+    less: generateLoaders('less', {
+      modifyVars: {
+        hack: `true; @import "${path.join(
+          __dirname,
+          "../src/styles/variable.less"
+        )}";`
+      }
+    }).concat({
       loader: 'sass-resources-loader',
       options: {
-        resources: path.resolve(__dirname, '../src/styles/variables.scss')
+        resources: path.resolve(__dirname, '../src/styles/variable.less')
       }
     }),
+    sass: generateLoaders('sass', { indentedSyntax: true }),
+    scss: generateLoaders('sass'),
     stylus: generateLoaders('stylus'),
     styl: generateLoaders('stylus')
   }

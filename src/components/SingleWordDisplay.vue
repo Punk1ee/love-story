@@ -55,7 +55,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
   .single-word-display-container {
     font-size: 20px;
     position: absolute;

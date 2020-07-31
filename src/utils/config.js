@@ -69,7 +69,7 @@ const stages = [
         }
       },
     ],
-    style: { background: 'linear-gradient(to bottom, #010A10 20%, #59230B 50%, #2F1107 100%)' }
+    style: { background: 'linear-gradient(to bottom, #010A10 20%, #59230B 40%, #2F1107 100%)' }
   },
   {
     content: [

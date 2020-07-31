@@ -175,7 +175,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
   @keyframes _scale {
     0% {
       transform: scale(1.5);
@@ -210,6 +210,7 @@ export default {
     position: absolute;
     width: 100%;
     height: 100%;
+    color: @themeColor;
   }
   .icon {
     position: absolute;

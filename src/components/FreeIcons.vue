@@ -72,7 +72,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 @keyframes swaying_1{
   0% {
     transform: rotateZ(-30deg);

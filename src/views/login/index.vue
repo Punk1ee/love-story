@@ -55,9 +55,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
   .login-wrap {
-    background-color: #f7f8fa;
     .introduce {
       padding: 20px 0;
       text-align: center;

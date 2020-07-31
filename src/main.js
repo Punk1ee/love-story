@@ -5,11 +5,11 @@ import App from './App'
 import router from './router'
 import store from './store'
 import Vant from 'vant';
-import 'vant/lib/index.css';
+import 'vant/lib/index.less';
 import VueAwesomeSwiper from 'vue-awesome-swiper';
 import 'swiper/swiper-bundle.css';
 
-import '@/styles/index.scss'
+import '@/styles/index.less'
 
 import '@/utils/authority'
 
