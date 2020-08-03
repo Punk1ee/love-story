@@ -52,7 +52,6 @@ service.interceptors.response.use(
     }
   },
   error => {
-    debugger
     console.log('err' + error) // for debug
     Toast.fail(error.message || 'Error')
     return Promise.reject(error)

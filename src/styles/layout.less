@@ -1,14 +1,18 @@
 #app {
+  color: @fontColor;
   .app-container {
     width: 100%;
     height: 100%;
 
     .app-main-wrap {
+      width: 100%;
       height: calc(~"100% - @{appFooterHeight}");
+      overflow-y: auto;
       background-color: #fff;
     }
 
     .app-footer-wrap {
+      width: 100%;
       height: @appFooterHeight;
       line-height: @appFooterHeight;
       background-color: @appFooterBg;

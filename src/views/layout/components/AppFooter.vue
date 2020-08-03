@@ -5,10 +5,11 @@
         v-for="(tab, index) in tabs.options"
         :key="index"
         class="tab-item"
-        :class="{ 'active': tab.active }"
+        :class="{ 'active': tab.active, 'icon-class': tab.type === 'icon' }"
         @click="goToPage(tab)"
       >
-        {{ tab.title }}
+        <svg-icon v-if="tab.type === 'icon'" :icon-class="tab.title" />
+        <template v-else>{{ tab.title }}</template>
       </span>
     </div>
   </div>
@@ -22,13 +23,20 @@ export default {
       tabs: {
         options: [
           { title: '首页', path: '/home/index', active: true },
-          { title: '+', path: '/index1', active: false },
+          { title: 'photo', type: 'icon', path: '/index1', active: false },
           { title: '我的', path: '/me/index', active: false }
         ]
       }
     }
   },
+  created() {
+    this.initToCurPath()
+  },
   methods: {
+    initToCurPath() {
+      const initPath = this.tabs.options.find(option => option.active).path
+      this.$route.path !== initPath && this.$router.push({ path: initPath })
+    },
     goToPage(tab) {
       this.tabs.options.find(option => option.active).active = false
       tab.active = true
@@ -48,6 +56,9 @@ export default {
       padding: 0 4px;
       text-align: center;
       color: @themeBg;
+      &.icon-class {
+        font-size: 24px;
+      }
       &.active {
         color: #fff;
         transform: scale(1.06);
@@ -56,7 +67,7 @@ export default {
           width: 100%;
           height: 2px;
           position: absolute;
-          bottom: 6px;
+          bottom: 8px;
           left: 0;
           z-index: 1;
           background-color: #fff;

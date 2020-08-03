@@ -24,6 +24,11 @@ export default new Router({
       ]
     },
     {
+      path: '/new-add',
+      name: 'NewAdd',
+      component: () => import('@/views/newAdd')
+    },
+    {
       path: '/me',
       redirect: '/me/index',
       component: Layout,
@@ -34,11 +39,6 @@ export default new Router({
           component: () => import('@/views/me')
         }
       ]
-    },
-    {
-      path: '/index1',
-      name: 'Index1',
-      component: () => import('@/views')
     }
   ]
 })
