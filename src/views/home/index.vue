@@ -6,7 +6,6 @@
       @load="onLoad"
     >
       <issue v-for="(item, idx) in issues" :key="idx" :source="item" />
-      <!-- <van-cell v-for="(item, idx) in issues" :key="idx" :title="item.text" /> -->
     </van-list>
   </van-pull-refresh>
 </template>
@@ -28,16 +27,16 @@ export default {
   },
   methods: {
     onLoad() {
-      if (this.refreshing) {
-        this.issues = []
-        this.refreshing = false
-      }
-
       const data = {}
       const vm = this
       getIssues(data).then(res => {
         setTimeout(() => {
-          vm.issues = [...vm.issues, ...res.data]
+          if (this.refreshing) {
+            this.issues = [...res.data]
+            this.refreshing = false
+          } else {
+            vm.issues = [...vm.issues, ...res.data]
+          }
           vm.loading = false
         }, 1000)
       }).catch(() => {

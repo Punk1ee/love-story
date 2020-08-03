@@ -22,24 +22,30 @@ export default {
     return {
       tabs: {
         options: [
-          { title: '首页', path: '/home/index', active: true },
+          { title: 'Home', path: '/home/index', active: true },
           { title: 'photo', type: 'icon', path: '/index1', active: false },
-          { title: '我的', path: '/me/index', active: false }
+          { title: 'Me', path: '/me/index', active: false }
         ]
       }
     }
   },
-  created() {
-    this.initToCurPath()
+  watch: {
+    '$route.path'(nv, ov) {
+      if (nv !== ov) {
+        this.initToCurPath(nv)
+      }
+    }
   },
   methods: {
-    initToCurPath() {
-      const initPath = this.tabs.options.find(option => option.active).path
-      this.$route.path !== initPath && this.$router.push({ path: initPath })
+    initToCurPath(path) {
+      const tab = this.tabs.options.find(option => option.path === path)
+      this.setActive(tab)
     },
-    goToPage(tab) {
+    setActive(tab) {
       this.tabs.options.find(option => option.active).active = false
       tab.active = true
+    },
+    goToPage(tab) {
       this.$router.push({ path: tab.path })
     }
   }
