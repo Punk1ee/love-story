@@ -3,26 +3,26 @@
     <van-image
       round
       fit="cover"
-      :src="source.avatarSrc"
+      :src="source.avatarSrc || 'https://img.yzcdn.cn/vant/cat.jpeg'"
       class="avatar fl"
     />
     <div class="content fl">
-      <p class="username">{{ source.username }}</p>
-      <p v-if="source.text" class="text">{{ source.text }}</p>
+      <p class="username">{{ source.userName }}</p>
+      <p v-if="source.content" class="text">{{ source.content }}</p>
       <div class="img-wrap">
         <van-image
-          v-for="(img, idx) in source.imgs"
+          v-for="(img, idx) in contentImgs"
           :key="idx"
           fit="cover"
-          :src="img.src"
+          :src="img"
           class="img"
           :style="setStyle(idx)"
           @click.native.stop="previewShow = true"
         />
       </div>
-      <p class="time">{{ formatTime(source.time) }}</p>
+      <p class="time">{{ formatTime(source.createTime) }}</p>
     </div>
-    <van-image-preview v-model="previewShow" :images="previewImgs" />
+    <van-image-preview v-model="previewShow" :images="contentImgs" />
   </div>
 </template>
 
@@ -41,13 +41,13 @@ export default {
     }
   },
   computed: {
-    previewImgs() {
-      return this.source.imgs ? this.source.imgs.map(img => img.src) : []
+    contentImgs() {
+      return JSON.parse(this.source.contentImage)
     }
   },
   methods: {
     setStyle(idx) {
-      const rows = Math.ceil(this.source.imgs.length / 3)
+      const rows = Math.ceil(this.source.contentImage.length / 3)
       const curRow = Math.ceil((idx + 1) / 3)
       let margin = 0
       let style = {}
@@ -89,8 +89,8 @@ export default {
         display: flex;
         flex-wrap: wrap;
         .img {
-          width: 88px;
-          height: 88px;
+          width: calc(~"(100% - 30px) / 3");
+          height: 80px;
         }
       }
       .time {

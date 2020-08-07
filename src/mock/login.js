@@ -17,7 +17,7 @@ export default {
     const valid = validUser.find(user => {
       return user.username === username && user.password === password
     })
-    const code = valid ? 1 : 0 
+    const code = valid ? 200 : 0 
     const data = valid ? { token: username } : null
     const message = valid ? successMessage : errorMessage
     return {

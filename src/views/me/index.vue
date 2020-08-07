@@ -8,7 +8,7 @@
         class="stage-page"
         ref="swiper"
       >
-        <template v-if="loadStage(idx)">
+        <template>
           <div v-for="(cpt, key) in stage.content" :key="key">
             <component
               :is="cpt.name"

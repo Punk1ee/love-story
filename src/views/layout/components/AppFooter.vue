@@ -5,48 +5,71 @@
         v-for="(tab, index) in tabs.options"
         :key="index"
         class="tab-item"
-        :class="{ 'active': tab.active, 'icon-class': tab.type === 'icon' }"
+        :class="{ 'active': tabs.active === tab.name, 'icon-class': tab.icon }"
         @click="goToPage(tab)"
       >
-        <svg-icon v-if="tab.type === 'icon'" :icon-class="tab.title" />
-        <template v-else>{{ tab.title }}</template>
+        <svg-icon v-if="tab.icon" :icon-class="tab.icon" />
+        <template v-else>{{ tab.name }}</template>
       </span>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
   name: 'AppFooter',
   data() {
     return {
       tabs: {
         options: [
-          { title: 'Home', path: '/home/index', active: true },
-          { title: 'photo', type: 'icon', path: '/index1', active: false },
-          { title: 'Me', path: '/me/index', active: false }
-        ]
+          { name: 'Home', path: '/home/index' },
+          { name: 'NewAdd', path: '/new-add/index', icon: 'photo' },
+          { name: 'Me', path: '/me/index' }
+        ],
+        active: 'Home'
       }
     }
+  },
+  computed: {
+    ...mapGetters([
+      'curView'
+    ])
   },
   watch: {
     '$route.path'(nv, ov) {
       if (nv !== ov) {
-        this.initToCurPath(nv)
+        this.resetTab(nv)
       }
     }
   },
+  created() {
+    this.initTab()
+  },
   methods: {
-    initToCurPath(path) {
-      const tab = this.tabs.options.find(option => option.path === path)
-      this.setActive(tab)
+    ...mapActions([
+      'setCurView'
+    ]),
+    findActiveTabByAttr(attr, val) {
+      return this.tabs.options.find(option => option[attr] === val)
     },
     setActive(tab) {
-      this.tabs.options.find(option => option.active).active = false
-      tab.active = true
+      this.tabs.active = tab.name
     },
     goToPage(tab) {
+      this.setCurView(tab)
       this.$router.push({ path: tab.path })
+    },
+    initTab() {
+      const tab = this.curView.name ? this.curView : this.findActiveTabByAttr('name', this.tabs.active)
+      this.setActive(tab)
+      this.goToPage(tab)
+    },
+    resetTab(path) {
+      const tab = this.findActiveTabByAttr('path', path)
+      this.setCurView(tab)
+      this.setActive(tab)
     }
   }
 }

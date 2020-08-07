@@ -1,6 +1,5 @@
 import Mock from 'mockjs'
 import loginAPI from './login'
-import homeAPI from './home'
 
 Mock.XHR.prototype.proxy_send = Mock.XHR.prototype.send
 Mock.XHR.prototype.send = function() {
@@ -11,7 +10,6 @@ Mock.XHR.prototype.send = function() {
   this.proxy_send(...arguments)
 }
 
-Mock.mock(/\/api\/v1\/login\/login/, 'post', loginAPI.login)
-Mock.mock(/\/api\/v1\/home\/issue/, 'post', homeAPI.getIssues)
+Mock.mock(/\/login\/login/, 'post', loginAPI.login)
 
 export default Mock

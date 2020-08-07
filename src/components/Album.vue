@@ -65,16 +65,16 @@ export default {
   right: 0;
   bottom: 0;
   left: 0;
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   margin: auto;
   z-index: 9999;
   /*改变左右上下,图片方块移动*/
 }
 /*包裹所有容器样式*/
 .cube {
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   margin: 0 auto;
   transform-style: preserve-3d;
   transform: rotateX(-30deg) rotateY(-80deg);
@@ -93,33 +93,33 @@ export default {
 
 .cube div[class*='out'] {
   position: absolute;
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   opacity: 0.8;
   transition: all 0.4s;
 }
 /*定义所有图片样式*/
 img[class*='out'] {
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
 }
 .cube .out_front {
-  transform: rotateY(0deg) translateZ(100px);
+  transform: rotateY(0deg) translateZ(90px);
 }
 .cube .out_back {
-  transform: translateZ(-100px) rotateY(180deg);
+  transform: translateZ(-90px) rotateY(180deg);
 }
 .cube .out_left {
-  transform: rotateY(90deg) translateZ(100px);
+  transform: rotateY(90deg) translateZ(90px);
 }
 .cube .out_right {
-  transform: rotateY(-90deg) translateZ(100px);
+  transform: rotateY(-90deg) translateZ(90px);
 }
 .cube .out_top {
-  transform: rotateX(90deg) translateZ(100px);
+  transform: rotateX(90deg) translateZ(90px);
 }
 .cube .out_bottom {
-  transform: rotateX(-90deg) translateZ(100px);
+  transform: rotateX(-90deg) translateZ(90px);
 }
 /*定义小正方体样式*/
 .cube div[class*='in'] {
@@ -154,21 +154,21 @@ img[class*='in'] {
 }
 /*鼠标移入后样式*/
 .out_front_scale {
-  transform: rotateY(0deg) translateZ(200px) !important;
+  transform: rotateY(0deg) translateZ(180px) !important;
 }
 .out_back_scale {
-  transform: translateZ(-200px) rotateY(180deg) !important;
+  transform: translateZ(-180px) rotateY(180deg) !important;
 }
 .out_left_scale {
-  transform: rotateY(90deg) translateZ(200px) !important;
+  transform: rotateY(90deg) translateZ(180px) !important;
 }
 .out_right_scale {
-  transform: rotateY(-90deg) translateZ(200px) !important;
+  transform: rotateY(-90deg) translateZ(180px) !important;
 }
 .out_top_scale {
-  transform: rotateX(90deg) translateZ(200px) !important;
+  transform: rotateX(90deg) translateZ(180px) !important;
 }
 .out_bottom_scale {
-  transform: rotateX(-90deg) translateZ(200px) !important;
+  transform: rotateX(-90deg) translateZ(180px) !important;
 }
 </style>

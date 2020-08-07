@@ -1,9 +1,9 @@
 import request from '@/utils/request'
 
-export function getIssues(data) {
+export function getIssues(params) {
   return request({
-    url: '/api/v1/home/issue',
-    method: 'post',
-    data
+    url: '/shuoshuo/list',
+    method: 'get',
+    params
   })
 }

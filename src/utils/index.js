@@ -34,6 +34,12 @@ export function setToken(token) {
 
 // 时间戳处理
 export function formatTime(time, option) {
+  if (!time) return
+  // 如果是日期格式，转换成时间戳
+  if (isNaN(time)) {
+    time = new Date(time).getTime()
+  }
+
   if (('' + time).length === 10) {
     time = parseInt(time) * 1000
   } else {

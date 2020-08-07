@@ -5,9 +5,9 @@ import { getToken } from '@/utils'
 
 // create an axios instance
 const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
+  baseURL: process.env.BASE_API, // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
-  timeout: 5000 // request timeout
+  timeout: 20000 // request timeout
 })
 
 // request interceptor
@@ -44,7 +44,7 @@ service.interceptors.response.use(
     const res = response.data
 
     // if the custom code is not 200, it is judged as an error.
-    if (res.code !== 1) {
+    if (res.code !== 200) {
       Toast.fail(res.message || 'Error')
       return Promise.reject(new Error(res.message || 'Error'))
     } else {

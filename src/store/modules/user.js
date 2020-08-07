@@ -4,8 +4,7 @@ import Cookie from 'js-cookie'
 
 const user = {
   state: {
-    username: '' || Cookie.get('username'),
-    password: '',
+    username: Cookie.get('username') || '',
     token: getToken()
   },
 
