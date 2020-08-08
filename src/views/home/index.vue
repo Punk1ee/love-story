@@ -31,7 +31,7 @@ export default {
       refreshing: false,
       page: {
         current: 1,
-        size: 5
+        size: 10
       },
       showNodata: false
     }
@@ -72,7 +72,6 @@ export default {
       })
     },
     onRefresh() {
-      this.issues = []
       this.loading = true
       this.page.current = 1
       this.onLoad()
