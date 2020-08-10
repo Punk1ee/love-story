@@ -17,7 +17,6 @@
 <script>
 import { getIssues } from '@/api/home'
 import Issue from '@/components/Issue'
-
 export default {
   name: 'Home',
   components: { Issue },
