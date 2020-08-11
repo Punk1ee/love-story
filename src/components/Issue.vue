@@ -3,7 +3,7 @@
     <van-image
       round
       fit="cover"
-      :src="source.avatarSrc || 'https://img.yzcdn.cn/vant/cat.jpeg'"
+      :src="avatarSrc"
       class="avatar fl"
     />
     <div class="content fl">
@@ -37,6 +37,7 @@ export default {
   },
   data() {
     return {
+      avatarSrc: 'https://img.yzcdn.cn/vant/cat.jpeg',
       previewShow: false
     }
   },
@@ -79,15 +80,16 @@ export default {
       padding-left: 15px;
       .username {
         color: @themeColor;
+        margin-bottom: 5px;
       }
       .text {
         line-height: 1.4;
-        margin: 5px 0;
       }
       .img-wrap {
         width: 100%;
         display: flex;
         flex-wrap: wrap;
+        margin-top: 5px;
         .img {
           width: calc(~"(100% - 30px) / 3");
           height: 80px;

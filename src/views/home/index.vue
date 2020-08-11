@@ -1,16 +1,14 @@
 <template>
   <van-pull-refresh v-model="refreshing" @refresh="onRefresh" class="home-wrapper">
     <van-list
-      v-if="issues.length"
-      :immediate-check="immediateCheck"
       v-model="loading"
       :finished="finished"
+      :finished-text="finishedText"
       :error.sync="error"
       @load="onLoad"
     >
       <issue v-for="(item, idx) in issues" :key="idx" :source="item" class="van-clearfix" />
     </van-list>
-    <div v-if="showNodata" class="no-data">no data...</div>
   </van-pull-refresh>
 </template>
 
@@ -23,20 +21,16 @@ export default {
   data() {
     return {
       issues: [],
-      immediateCheck: false,
       loading: false,
       finished: false,
+      finishedText: '没有更多了',
       error: false,
       refreshing: false,
       page: {
         current: 1,
         size: 10
-      },
-      showNodata: false
+      }
     }
-  },
-  mounted() {
-    this.onLoad()
   },
   methods: {
     onLoad() {
@@ -61,10 +55,6 @@ export default {
           }
         }
         vm.loading = false
-        // 是否展示showNodata
-        if (!vm.issues.length) {
-          vm.showNodata = true
-        }
       }).catch(() => {
         this.error = true
         vm.loading = false
