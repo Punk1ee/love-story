@@ -5,6 +5,7 @@
       :finished="finished"
       :finished-text="finishedText"
       :error.sync="error"
+      :error-text="errorText"
       @load="onLoad"
     >
       <issue v-for="(item, idx) in issues" :key="idx" :source="item" class="van-clearfix" />
@@ -25,6 +26,7 @@ export default {
       finished: false,
       finishedText: '没有更多了',
       error: false,
+      errorText: '请求失败，点击重新加载',
       refreshing: false,
       page: {
         current: 1,

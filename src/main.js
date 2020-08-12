@@ -10,17 +10,12 @@ import SvgIcon from '@/components/SvgIcon'
 import Vant from 'vant'
 import 'vant/lib/index.less'
 
-import VueAwesomeSwiper from 'vue-awesome-swiper'
-import 'swiper/swiper-bundle.css'
-
 import '@/styles/index.less'
-
 import '@/utils/authority'
 import './mock'
 
 Vue.config.productionTip = false
 Vue.use(Vant)
-Vue.use(VueAwesomeSwiper)
 Vue.component('svg-icon', SvgIcon)
 
 /* eslint-disable no-new */
