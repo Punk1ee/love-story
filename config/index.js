@@ -11,8 +11,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/': {
-        // target: 'http://47.104.212.147:8080',
-        target: 'http://144.202.86.185:8080',
+        target: 'http://www.weihaoyue.top:8080',
         changeOrigin: true
       }
     },

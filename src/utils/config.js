@@ -3,18 +3,18 @@ const stages = [
     content: [
       { 
         name: 'Album', source: {
-          out_front: 'https://punk1ee.oss-cn-beijing.aliyuncs.com/album/1.jpg',
-          out_back: 'https://punk1ee.oss-cn-beijing.aliyuncs.com/album/2.jpg',
-          out_left: 'https://punk1ee.oss-cn-beijing.aliyuncs.com/album/3.jpg',
-          out_right: 'https://punk1ee.oss-cn-beijing.aliyuncs.com/album/4.jpg',
-          out_top: 'https://punk1ee.oss-cn-beijing.aliyuncs.com/album/5.jpg',
-          out_bottom: 'https://punk1ee.oss-cn-beijing.aliyuncs.com/album/6.jpg',
-          in_front: 'https://punk1ee.oss-cn-beijing.aliyuncs.com/album/7.jpg',
-          in_back: 'https://punk1ee.oss-cn-beijing.aliyuncs.com/album/8.jpg',
-          in_left: 'https://punk1ee.oss-cn-beijing.aliyuncs.com/album/9.jpg',
-          in_right: 'https://punk1ee.oss-cn-beijing.aliyuncs.com/album/10.jpg',
-          in_top: 'https://punk1ee.oss-cn-beijing.aliyuncs.com/album/11.jpg',
-          in_bottom: 'https://punk1ee.oss-cn-beijing.aliyuncs.com/album/12.jpg'
+          out_front: `${process.env.STATIC_URL}/album/1.jpg`,
+          out_back: `${process.env.STATIC_URL}/album/2.jpg`,
+          out_left: `${process.env.STATIC_URL}/album/3.jpg`,
+          out_right: `${process.env.STATIC_URL}/album/4.jpg`,
+          out_top: `${process.env.STATIC_URL}/album/5.jpg`,
+          out_bottom: `${process.env.STATIC_URL}/album/6.jpg`,
+          in_front: `${process.env.STATIC_URL}/album/7.jpg`,
+          in_back: `${process.env.STATIC_URL}/album/8.jpg`,
+          in_left: `${process.env.STATIC_URL}/album/9.jpg`,
+          in_right: `${process.env.STATIC_URL}/album/10.jpg`,
+          in_top: `${process.env.STATIC_URL}/album/11.jpg`,
+          in_bottom: `${process.env.STATIC_URL}/album/12.jpg`
         }
       },
       { 

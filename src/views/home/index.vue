@@ -42,19 +42,21 @@ export default {
       getIssues(params).then(res => {
         // 分页++
         vm.page.current++
+        vm.loading = false
+
+        const data = res.data.records
         // 下拉刷新
         if (vm.refreshing) {
-          vm.issues = [...res.data.records]
+          vm.issues = [...data]
           vm.refreshing = false
         } else {
-          if (res.data.records && res.data.records.length) {
-            vm.issues = [...vm.issues, ...res.data.records]
+          if (data && data.length) {
+            vm.issues = [...vm.issues, ...data]
           } else {
             // 没有数据则finished
             vm.finished = true
           }
         }
-        vm.loading = false
       }).catch(() => {
         this.error = true
         vm.loading = false
