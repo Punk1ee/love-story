@@ -9,20 +9,21 @@
     <div class="content fl">
       <p class="username">{{ source.userName }}</p>
       <p v-if="source.content" class="text">{{ source.content }}</p>
-      <div class="img-wrap">
-        <van-image
-          v-for="(img, idx) in contentImgs"
-          :key="idx"
-          fit="cover"
-          :src="img"
-          class="img"
-          :style="setStyle(idx)"
-          @click.native.stop="previewShow = true"
-        />
+      <div class="srcs-wrap">
+        <div v-for="(src, idx) in contentSrcs" :key="idx" class="src-box">
+          <video v-if="isVideo(src)" :src="src" controls />
+          <van-image
+            v-else
+            fit="cover"
+            :src="src"
+            class="img"
+            @click.native.stop="showPreview(idx)"
+          />
+        </div>
       </div>
       <p class="time">{{ formatTime(source.createTime) }}</p>
     </div>
-    <van-image-preview v-model="previewShow" :images="contentImgs" />
+    <van-image-preview v-model="preview.show" :images="contentSrcs" :start-position="preview.startIdx" />
   </div>
 </template>
 
@@ -38,27 +39,25 @@ export default {
   data() {
     return {
       avatarSrc: 'https://img.yzcdn.cn/vant/cat.jpeg',
-      previewShow: false
+      preview: {
+        show: false,
+        startIdx: 0
+      }
     }
   },
   computed: {
-    contentImgs() {
+    contentSrcs() {
       return JSON.parse(this.source.contentImage)
     }
   },
   methods: {
-    setStyle(idx) {
-      const rows = Math.ceil(this.source.contentImage.length / 3)
-      const curRow = Math.ceil((idx + 1) / 3)
-      let margin = 0
-      let style = {}
-      if (idx % 3 !== 2) {
-        style.marginRight = '5px'
-      }
-      if (curRow !== rows) {
-        style.marginBottom = '5px'
-      }
-      return style
+    isVideo(src) {
+      const type = src.slice(src.lastIndexOf('.') + 1)
+      return type.toLowerCase() === 'mov'
+    },
+    showPreview(idx) {
+      this.preview.show = true
+      this.preview.startIdx = idx
     },
     formatTime
   }
@@ -85,18 +84,34 @@ export default {
       .text {
         line-height: 1.4;
       }
-      .img-wrap {
+      .srcs-wrap {
         width: 100%;
         display: flex;
         flex-wrap: wrap;
         margin-top: 5px;
-        .img {
-          width: calc(~"(100% - 30px) / 3");
-          height: 80px;
+        .src-box {
+          width: calc(~"(100% - 20px) / 2");
+          height: 100px;
+          margin-bottom: 5px;
+          &:nth-child(odd) {
+            margin-right: 5px;
+          }
+          &:nth-child(even) {
+            margin-right: 0;
+          }
+          & > * {
+            width: 100%;
+            height: 100%;
+          }
+          /deep/ .van-image {
+            & > * {
+              border-radius: 5px;
+            }
+          }
         }
       }
       .time {
-        margin-top: 8px;
+        margin-top: 3px;
         font-size: 14px;
         color: #8e8c8c;
       }

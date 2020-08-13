@@ -12,16 +12,13 @@
             v-model="upload.fileList"
             multiple
             :max-count="upload.maxCount"
-            :max-size="upload.maxSize"
             :accept="upload.accept"
-            :before-read="beforeRead"
             :after-read="afterRead"
-            @oversize="onOversize"
           />
         </template>
       </van-field>
       <div class="btn-box">
-        <van-button round block :loading="publishLoading" type="info" @click.native.stop="publish">
+        <van-button round block :loading="publishLoading" :disabled="disablePublish" type="info" @click.native.stop="publish">
           发表
         </van-button>
       </div>
@@ -42,39 +39,19 @@ export default {
       },
       upload: {
         fileList: [],
-        maxCount: 9,
-        maxSize: 5 * 1024 * 1024,
-        accept: '.jpg,.jpeg,.png',
+        maxCount: 4,
+        accept: 'image/*,video/*',
         formData: []
       },
       publishLoading: false
     }
   },
+  computed: {
+    disablePublish() {
+      return !this.issue.content.trim().length && !this.upload.fileList.length
+    }
+  },
   methods: {
-    onOversize() {
-      this.$toast.fail('图片不能超过5M')
-    },
-    beforeRead(file) {
-      let canUpload = true
-      if (Array.isArray(file)) {
-        for (const item of file) {
-          if (!this.resolveSingleFile(item)) {
-            canUpload = false
-          }
-        }
-      } else {
-        canUpload = this.resolveSingleFile(file)
-      }
-      return canUpload
-    },
-    resolveSingleFile(file) {
-      const file_after = file.name.slice(file.name.lastIndexOf('.'))
-      if (!this.upload.accept.split(',').find(item => item === file_after)) {
-        this.$toast.fail('图片格式有误')
-        return false
-      }
-      return true
-    },
     afterRead() {
       this.upload.fileList.forEach(file => {
         file.show = false
