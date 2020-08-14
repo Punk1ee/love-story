@@ -8,7 +8,7 @@
       :error-text="errorText"
       @load="onLoad"
     >
-      <issue v-for="(item, idx) in issues" :key="idx" :source="item" class="van-clearfix" />
+      <issue v-for="(item, idx) in issues" :key="idx" :source="item" class="van-clearfix" @delete-issue="deleteIssue" />
     </van-list>
   </van-pull-refresh>
 </template>
@@ -68,6 +68,11 @@ export default {
       this.loading = true
       this.page.current = 1
       this.onLoad()
+    },
+    deleteIssue([id, done]) {
+      const idx = this.issues.findIndex(issue => issue.id === id)
+      this.issues.splice(idx, 1)
+      done()
     }
   }
 }

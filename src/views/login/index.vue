@@ -3,10 +3,10 @@
     <p class="introduce">{{ introduce }}</p>
     <van-form>
       <van-field
-        v-model="username"
-        name="username"
+        v-model="userName"
+        name="userName"
         label="Username"
-        :rules="[{ required: true, message: 'unvalid username' }]"
+        :rules="[{ required: true, message: 'unvalid userName' }]"
       />
       <van-field
         v-model="password"
@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       introduce: 'A place for u',
-      username: '',
+      userName: '',
       password: '',
       loading: false
     };
@@ -39,7 +39,7 @@ export default {
     login() {
       this.loading = true
       const userInfo = {
-        username: this.username,
+        userName: this.userName,
         password: this.password
       }
       this.$store.dispatch('Login', userInfo).then(res => {

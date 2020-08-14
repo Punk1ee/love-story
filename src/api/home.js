@@ -7,3 +7,11 @@ export function getIssues(params) {
     params
   })
 }
+
+export function deleteIssue(params) {
+  return request({
+    url: '/shuoshuo',
+    method: 'delete',
+    params
+  })
+}

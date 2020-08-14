@@ -24,12 +24,12 @@ export function getBetweenRandom(min, max = 0) {
 
 // 获取token
 export function getToken() {
-  return sessionStorage.getItem(tokenKey)
+  return Cookie.get(tokenKey)
 }
 
 // 设置token
 export function setToken(token) {
-  return sessionStorage.setItem(tokenKey, token)
+  return Cookie.set(tokenKey, token)
 }
 
 // 时间戳处理

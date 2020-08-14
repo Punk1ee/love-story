@@ -24,7 +24,7 @@ export default {
   methods: {
     playMusic () {
       if (!this.player.paused) return
-      this.player.play()
+      // this.player.play()
     }
   }
 }

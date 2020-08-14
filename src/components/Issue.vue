@@ -7,7 +7,7 @@
       class="avatar fl"
     />
     <div class="content fl">
-      <p class="username">{{ source.userName }}</p>
+      <p class="userName">{{ source.userName }}</p>
       <p v-if="source.content" class="text">{{ source.content }}</p>
       <div class="srcs-wrap">
         <div v-for="(src, idx) in contentSrcs" :key="idx" class="src-box">
@@ -21,7 +21,10 @@
           />
         </div>
       </div>
-      <p class="time">{{ formatTime(source.createTime) }}</p>
+      <p class="time-delete">
+        <span class="time">{{ formatTime(source.createTime) }}</span>
+        <svg-icon v-if="deletePower" icon-class="delete" class="delete" @click.stop="confirmDelete" />
+      </p>
     </div>
     <van-image-preview v-model="preview.show" :images="contentSrcs" :start-position="preview.startIdx" />
   </div>
@@ -29,6 +32,7 @@
 
 <script>
 import { formatTime } from '@/utils'
+import { deleteIssue } from '@/api/home'
 
 export default {
   name: 'Issue',
@@ -48,6 +52,9 @@ export default {
   computed: {
     contentSrcs() {
       return JSON.parse(this.source.contentImage)
+    },
+    deletePower() {
+      return this.source.userId == this.$store.getters.userId
     }
   },
   methods: {
@@ -58,6 +65,22 @@ export default {
     showPreview(idx) {
       this.preview.show = true
       this.preview.startIdx = idx
+    },
+    confirmDelete() {
+      this.$dialog.confirm({
+        message: '确认删除吗？',
+        beforeClose: this.deleteIssue
+      })
+    },
+    deleteIssue(action, done) {
+      if (action === 'cancel') return done()
+      const params = {
+        id: this.source.id,
+        userId: this.source.userId
+      }
+      deleteIssue(params).then(res => {
+        this.$emit('delete-issue', [this.source.id, done])
+      })
     },
     formatTime
   }
@@ -77,7 +100,7 @@ export default {
     .content {
       width: calc(~"100% - @{avatarSize}");
       padding-left: 15px;
-      .username {
+      .userName {
         color: @themeColor;
         margin-bottom: 5px;
       }
@@ -110,10 +133,23 @@ export default {
           }
         }
       }
-      .time {
-        margin-top: 3px;
-        font-size: 14px;
-        color: #8e8c8c;
+      .time-delete {
+        display: flex;
+        justify-content: space-between;
+        .time {
+          margin-top: 3px;
+          font-size: 14px;
+          color: #8e8c8c;
+        }
+        .delete {
+          width: 24px;
+          height: 24px;
+          padding: 4px;
+          color: @redColor;
+          &:hover {
+            cursor: pointer;
+          }
+        }
       }
     }
   }

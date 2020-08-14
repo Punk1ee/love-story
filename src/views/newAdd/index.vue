@@ -68,7 +68,8 @@ export default {
         formData,
         params: {
           content: this.issue.content,
-          userName: this.$store.getters.username
+          userName: this.$store.getters.userName,
+          userId: this.$store.getters.userId,
         }
       }
 

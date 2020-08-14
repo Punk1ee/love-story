@@ -5,20 +5,22 @@ export default {
   login: config => {
     const validUser = [
       {
-        username: 'weihaoyue',
+        userName: 'weihaoyue',
+        userId: 1,
         password: '20170827'
       },
       {
-        username: 'punklee',
+        userName: 'punklee',
+        userId: 2,
         password: '20170827'
       }
     ]
-    const { username, password } = JSON.parse(config.body) 
+    const { userName, password } = JSON.parse(config.body) 
     const valid = validUser.find(user => {
-      return user.username === username && user.password === password
+      return user.userName === userName && user.password === password
     })
     const code = valid ? 200 : 0 
-    const data = valid ? { token: username } : null
+    const data = valid ? { token: valid.userName, userId: valid.userId, userName: valid.userName  } : null
     const message = valid ? successMessage : errorMessage
     return {
       code,

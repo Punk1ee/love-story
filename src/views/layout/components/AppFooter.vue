@@ -24,7 +24,7 @@ export default {
     return {
       tabs: {
         options: [
-          { name: 'Home', path: '/home/index' },
+          { name: 'Issues', path: '/home/index' },
           { name: 'NewAdd', path: '/new-add/index', icon: 'photo' },
           { name: 'Me', path: '/me/index' }
         ],
@@ -85,6 +85,7 @@ export default {
       padding: 0 4px;
       text-align: center;
       color: @themeBg;
+      cursor: pointer;
       &.icon-class {
         font-size: 24px;
       }
