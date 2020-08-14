@@ -26,9 +26,9 @@ export default {
         options: [
           { name: 'Issues', path: '/home/index' },
           { name: 'NewAdd', path: '/new-add/index', icon: 'photo' },
-          { name: 'Me', path: '/me/index' }
+          { name: 'Display', path: '/me/index' }
         ],
-        active: 'Home'
+        active: 'Issues'
       }
     }
   },
@@ -45,6 +45,7 @@ export default {
     }
   },
   created() {
+    debugger
     this.initTab()
   },
   methods: {

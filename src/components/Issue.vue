@@ -54,7 +54,7 @@ export default {
       return JSON.parse(this.source.contentImage)
     },
     deletePower() {
-      return this.source.userId == this.$store.getters.userId
+      return this.$store.getters.admin || this.source.userId == this.$store.getters.userId
     }
   },
   methods: {
