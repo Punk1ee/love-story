@@ -4,15 +4,8 @@ const errorMessage = '失败'
 export default {
   login: config => {
     const validUser = [
-      { userName: 'weihaoyue', userId: 1, password: 'weihaoyue' },
-      { userName: 'punklee', userId: 2, password: 'punklee', admin: true },
-      { userName: 'weihaoxue', userId: 3, password: 'weihaoxue' },
-      { userName: 'renqiujing', userId: 4, password: 'renqiujing' },
-      { userName: 'wubozhong', userId: 5, password: 'wubozhong' },
-      { userName: 'jiangwei', userId: 6, password: 'jiangwei' },
-      { userName: 'xingdongshen', userId: 7, password: 'xingdongshen' },
-      { userName: 'liuxian', userId: 8, password: 'liuxian' },
-      { userName: 'lichunhua', userId: 9, password: 'lichunhua' }
+      { userName: 'weihaoyue', userId: 1, password: '20170827' },
+      { userName: 'punklee', userId: 2, password: 'lp3058493..', admin: true }
     ]
     const { userName, password } = JSON.parse(config.body) 
     const valid = validUser.find(user => {

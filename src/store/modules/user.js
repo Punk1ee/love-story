@@ -1,12 +1,11 @@
 import { getToken, setToken } from '@/utils'
 import { login } from '@/api/login'
-import Cookie from 'js-cookie'
 
 const user = {
   state: {
-    userName: Cookie.get('userName') || '',
-    userId: Cookie.get('userId') || '',
-    admin: Cookie.get('admin') || false,
+    userName: sessionStorage.getItem('userName') || '',
+    userId: sessionStorage.getItem('userId') || '',
+    admin: sessionStorage.getItem('admin') || false,
     token: getToken() || ''
   },
 
@@ -15,9 +14,9 @@ const user = {
       state.userName = userName
       state.userId = userId
       state.admin = !!admin
-      Cookie.set('userName', userName)
-      Cookie.set('userId', userId)
-      Cookie.set('admin', admin)
+      sessionStorage.setItem('userName', userName)
+      sessionStorage.setItem('userId', userId)
+      sessionStorage.setItem('admin', admin)
     },
     SET_TOKEN: (state, token) => {
       state.token = token

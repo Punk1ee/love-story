@@ -1,4 +1,3 @@
-import Cookie from 'js-cookie'
 const tokenKey = 'token'
 
 // 获取屏幕宽度
@@ -24,12 +23,12 @@ export function getBetweenRandom(min, max = 0) {
 
 // 获取token
 export function getToken() {
-  return Cookie.get(tokenKey)
+  return sessionStorage.getItem(tokenKey)
 }
 
 // 设置token
 export function setToken(token) {
-  return Cookie.set(tokenKey, token)
+  return sessionStorage.setItem(tokenKey, token)
 }
 
 // 时间戳处理

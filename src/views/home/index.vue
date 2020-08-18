@@ -54,8 +54,8 @@ export default {
         } else {
           if (data && data.length) {
             vm.issues = [...vm.issues, ...data]
-          } else {
-            // 没有数据则finished
+          }
+          if (data.length < this.page.size || !data) {
             vm.finished = true
           }
         }

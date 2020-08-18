@@ -1,15 +1,13 @@
-import Cookie from 'js-cookie'
-
 const user = {
   state: {
-    curView: Cookie.getJSON('curView') || {}
+    curView: JSON.parse(sessionStorage.getItem('curView')) || {}
   },
 
   mutations: {
     SET_CUR_VIEW: (state, { name, path }) => {
       state.curView.name = name
       state.curView.path = path
-      Cookie.set('curView', { name, path })
+      sessionStorage.setItem('curView', JSON.stringify({ name, path }))
     }
   },
 

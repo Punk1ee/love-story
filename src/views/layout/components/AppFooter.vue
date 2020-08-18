@@ -45,7 +45,6 @@ export default {
     }
   },
   created() {
-    debugger
     this.initTab()
   },
   methods: {
@@ -77,6 +76,11 @@ export default {
 </script>
 
 <style lang="less" scoped>
+  .player {
+    width: 100%;
+    position: fixed;
+    bottom: @appFooterHeight;
+  }
   .tab-box {
     display: flex;
     justify-content: space-around;
