@@ -37,10 +37,10 @@ export default {
     toggleMusic() {
       if (this.player.paused) {
         this.player.play()
-        this.$toast.success('音乐播放')
+        this.$toast.success('BGM is comming soon')
       } else {
         this.player.pause()
-        this.$toast.fail('音乐暂停')
+        this.$toast.fail('BGM is off')
       }
     }
   }

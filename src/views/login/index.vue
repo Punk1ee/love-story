@@ -6,7 +6,7 @@
         v-model="userName"
         name="userName"
         label="Username"
-        :rules="[{ required: true, message: 'unvalid userName' }]"
+        :rules="[{ required: true, message: 'unvalid username' }]"
       />
       <van-field
         v-model="password"

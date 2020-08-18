@@ -12,8 +12,9 @@
             v-model="upload.fileList"
             multiple
             :max-count="upload.maxCount"
+            :max-size="upload.maxSize"
             :accept="upload.accept"
-            :after-read="afterRead"
+            @oversize="onOversize"
           />
         </template>
       </van-field>
@@ -40,6 +41,7 @@ export default {
       upload: {
         fileList: [],
         maxCount: 4,
+        maxSize: 50 * 1024 * 1024,
         accept: 'image/*,video/*',
         formData: []
       },
@@ -48,15 +50,12 @@ export default {
   },
   computed: {
     disablePublish() {
-      return !this.issue.content.trim().length && !this.upload.fileList.length
+      return (!this.issue.content.trim().length && !this.upload.fileList.length) || this.publishLoading
     }
   },
   methods: {
-    afterRead() {
-      this.upload.fileList.forEach(file => {
-        file.show = false
-        file.rate = 0
-      })
+    onOversize(file) {
+      this.$toast.fail('单个文件大小不能超过50MB')
     },
     publish() {
       this.publishLoading = true
