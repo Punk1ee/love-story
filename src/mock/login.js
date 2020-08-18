@@ -5,7 +5,14 @@ export default {
   login: config => {
     const validUser = [
       { userName: 'weihaoyue', userId: 1, password: '20170827' },
-      { userName: 'punklee', userId: 2, password: 'lp3058493..', admin: true }
+      { userName: 'punklee', userId: 2, password: 'lp3058493..', admin: true },
+      { userName: 'liuxian', userId: 3, password: 'liuxian'},
+      { userName: 'lichunhua', userId: 4, password: 'lichunhua' },
+      { userName: 'weihaoxue', userId: 5, password: 'weihaoxue' },
+      { userName: 'wubozhong', userId: 6, password: 'wubozhong' },
+      { userName: 'renqiujing', userId: 7, password: 'renqiujing' },
+      { userName: 'jiangwei', userId: 8, password: 'jiangwei' },
+      { userName: 'xingdongshen', userId: 9, password: 'xingdongshen' }
     ]
     const { userName, password } = JSON.parse(config.body) 
     const valid = validUser.find(user => {

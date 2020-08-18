@@ -1,5 +1,5 @@
 <template>
-  <div class="app-main-wrap" @dblclick.stop="toggleMusic">
+  <div class="app-main-wrap" @dblclick.stop="toggleMusic()">
     <transition name="fade-transform" mode="out-in">
       <router-view :key="key"></router-view>
     </transition>
