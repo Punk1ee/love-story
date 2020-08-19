@@ -12,7 +12,13 @@ export default {
       { userName: 'wubozhong', userId: 6, password: 'wubozhong' },
       { userName: 'renqiujing', userId: 7, password: 'renqiujing' },
       { userName: 'jiangwei', userId: 8, password: 'jiangwei' },
-      { userName: 'xingdongshen', userId: 9, password: 'xingdongshen' }
+      { userName: 'xingdongshen', userId: 9, password: 'xingdongshen' },
+      { userName: 'wangyiyue', userId: 10, password: 'wangyiyue' },
+      { userName: 'weidejian', userId: 11, password: 'weidejian' },
+      { userName: 'weishili', userId: 12, password: 'weishili' },
+      { userName: 'chenshuai', userId: 13, password: 'chenshuai' },
+      { userName: 'weibingjie', userId: 14, password: 'weibingjie' },
+      { userName: 'yanglong', userId: 14, password: 'yanglong' }
     ]
     const { userName, password } = JSON.parse(config.body) 
     const valid = validUser.find(user => {
